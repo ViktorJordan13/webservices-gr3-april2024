@@ -1,0 +1,5 @@
+1. Od domasnoto od predhodniot (vtoriot) cas, na toj REST API CRUD sto go napravivte nadgradete go
+da raboti so handleri kako na ovoj cas.
+2. Testiratjte gi CRUD funkciite preku POSTMAN
+3. Priperemete se da objasnite sto ste napravile i da demonstirate kako gi proveveruvate
+rutite preku POSTMAN na pocetokot od naredniot cas
