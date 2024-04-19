@@ -1,0 +1,4 @@
+1. Istrazete za bcrypt, jwt, express-jwt
+2. Razgledajte go kodot od ovoj cas, i kazete mi naredniot cas sto vi e jasno a sto ne e za da go prodiskutirame i objasnime
+BONUS. Obidete se vo handlerot da napravite refreshToken funkcija
+BONUS BONUS. Obidete se da napravite reset password funkcija vo handlerot
