@@ -6,7 +6,7 @@ const accountSchema = new mongoose.Schema({
     fullname: String
 });
 
-const Account = mongoose("accounts", accountSchema);
+const Account = mongoose.model("accounts", accountSchema);
 
 //Task:
 //try to finish these CRUD functions for database operations in MongoDB
