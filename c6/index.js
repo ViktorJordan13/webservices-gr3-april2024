@@ -11,6 +11,14 @@ const {
     resetPassword 
 } = require("./handlers/auth");
 
+const{
+    getAll,
+    getOne,
+    create,
+    update,
+    remove
+} = require("./handlers/blogs");
+
 const api = express();
 
 api.use(express.json());
@@ -33,6 +41,20 @@ api.post("/api/v1/auth/login", login);
 api.post("/api/v1/auth/register", register);
 api.post("/api/v1/auth/refreshToken", refreshToken);
 api.post("/api/v1/auth/resetPassword", resetPassword);
+
+api.get("/api/v1/blog", getAll);
+api.get("/api/v1/blog/:id", getOne);
+api.post("/api/v1/blog", create);
+api.put("/api/v1/blog/:id", update);
+api.delete("/api/v1/blog/:id", remove);
+
+//Unathorized access checker and loging
+api.use(function (err, req, res, next){
+    if(err.name = "UnauthorizedAccess"){
+        res.status(401).send("invalid token!");
+    }
+    res.status(err.status).send(err.inner.message);
+});
 
 api.listen(config.getSection("development").port, (err) => {
     err 
