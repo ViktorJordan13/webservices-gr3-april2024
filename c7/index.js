@@ -1,5 +1,6 @@
 const express = require("express");
 const { expressjwt: jwt} = require("express-jwt");
+const fileUpload = require("express-fileupload");
 
 const config = require("./pkg/config");
 require("./pkg/db");
@@ -19,10 +20,17 @@ const{
     remove
 } = require("./handlers/blogs");
 
+const{
+    upload,
+    download,
+    listFiles,
+    removeFile
+} = require("./handlers/storage")
+
 const api = express();
 
 api.use(express.json());
-
+api.use(fileUpload());
 api.use(
     jwt({
         secret: config.getSection("development").jwt,
@@ -48,9 +56,14 @@ api.post("/api/v1/blog", create);
 api.put("/api/v1/blog/:id", update);
 api.delete("/api/v1/blog/:id", remove);
 
+api.post("/api/v1/storage", upload);
+api.get("/api/v1/storage/:filename", download);
+api.get("/api/v1/storage", listFiles);
+api.delete("/api/v1/storage/:filename", removeFile);
+
 //Unathorized access checker and loging
 api.use(function (err, req, res, next){
-    if(err.name = "UnauthorizedAccess"){
+    if(err.name === "UnauthorizedAccess"){
         res.status(401).send("invalid token!");
     }
     res.status(err.status).send(err.inner.message);
